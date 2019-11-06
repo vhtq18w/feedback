@@ -1,0 +1,90 @@
+* UbuntuKylin Feedback
+UbuntuKylin feedback unified web api.
+** Getting start
+*** Quick clone
+#+BEGIN_SRC sh
+git clone --depth 1 https://github.com/vhtq18w/feedback.git
+#+END_SRC
+*** Import environment
+#+BEGIN_SRC sh
+conda create --file environment.yml
+#+END_SRC
+*** TODO Run application
+** Introduction
+Before deploy this server, you must make sure all dependencies was installed and
+correctly configured.
+*** Preparations
+**** MariaDB SQL
+Because of this server use *flask-migrate* to do the actual database migrations,
+I decided to temporary use *MariaDB* manage data. Before all works beginning,
+make sure MariaDB was installed and started.
+After confirmation, you must modify SQL configuration file. The default
+configuration is not safe. It looks like:
+#+BEGIN_SRC python
+# config/database.py
+class DatabaseConfig:
+    USERNAME = 'burgess'
+    PASSWORD = 'burgess'
+    HOSTADDR = 'localhost'
+    DBPORT = '3306'
+    DBNAME = 'feedback'
+
+    SQLALCHEMY_DATABASE_URI = f'mysql+mysqlconnector://{USERNAME}:{PASSWORD}' \
+                              f'@{HOSTADDR}:{DBPORT}/{DBNAME}'
+
+#+END_SRC
+Then you need create database named /feedback/.
+#+BEGIN_SRC sql
+CREATE DATABASE feedback;
+#+END_SRC
+*** Deploy
+** Document
+*** API
+**** Upload image
+***** URL
+~/image/~
+***** Method
+~POST~
+***** URL Params
+None
+***** Data Params
+Required:
+| Param name | type           |
+|------------+----------------|
+| picture    | form-data:file |
+
+Optional:
+None
+***** Success Response
+Code: ~201~ Created
+Content: ~{ "id" : 123, "url": "http://prefix/_upload/image/filename" }~
+***** Error Response
+Code: ~500~
+Content:
+**** Insert feedback
+***** URL
+~/record/~
+***** Method
+~POST~
+***** URL Params
+required:
+optional:
+| Param name  | type    |
+|-------------+---------|
+| title       | string  |
+| description | string  |
+| phone       | int(11) |
+| mail        | string  |
+| source      | string  |
+| image1      | int     |
+| image..     | int     |
+| image9      | int     |
+
+***** Data Params
+None
+***** Success Response
+Code: ~201~ Created
+Content: ~{ "id" : 123 }~
+***** Error Response
+Code: ~500~
+Content:
