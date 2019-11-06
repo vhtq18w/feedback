@@ -37,10 +37,26 @@ Then you need create database named /feedback/.
 #+BEGIN_SRC sql
 CREATE DATABASE feedback;
 #+END_SRC
+*** Migrate
+You can create a migration repository with the following command:
+#+BEGIN_SRC sh
+flask db init
+#+END_SRC
+This will add a /migrations/ folder to your application. The contents of this
+folder need to be added to version control along with your other source files.
+You can then generate an initial migration:
+#+BEGIN_SRC sh
+flask db migrate
+#+END_SRC
+Then you can apply the migration to the database:
+#+BEGIN_SRC sh
+flask db upgrade
+#+END_SRC
 *** Deploy
 ** Document
 *** API
 **** Upload image
+Use this api upload some images to server and return image url.
 ***** URL
 ~/image/~
 ***** Method
@@ -62,6 +78,7 @@ Content: ~{ "id" : 123, "url": "http://prefix/_upload/image/filename" }~
 Code: ~500~
 Content:
 **** Insert feedback
+Use this api insert a feedback record to server and return record id.
 ***** URL
 ~/record/~
 ***** Method
