@@ -7,7 +7,7 @@ git clone --depth 1 https://github.com/vhtq18w/feedback.git
 #+END_SRC
 *** Import environment
 #+BEGIN_SRC sh
-conda create --file environment.yml
+conda env create --file environment.yml
 #+END_SRC
 *** TODO Run application
 ** Introduction
@@ -65,19 +65,19 @@ Use this api upload some images to server and return image url.
 None
 ***** Data Params
 Required:
+
+Optional:
 | Param name | type           |
 |------------+----------------|
 | picture    | form-data:file |
 
-Optional:
-None
 ***** Success Response
 Code: ~201~ Created
 Content: ~{ "id" : 123, "url": "http://prefix/_upload/image/filename" }~
 ***** Error Response
 Code: ~500~
 Content:
-**** Insert feedback
+**** Insert feedback (after upload the image separately)
 Use this api insert a feedback record to server and return record id.
 ***** URL
 ~/record/~
@@ -99,6 +99,35 @@ optional:
 
 ***** Data Params
 None
+***** Success Response
+Code: ~201~ Created
+Content: ~{ "id" : 123 }~
+***** Error Response
+Code: ~500~
+Content:
+**** Insert feedback (with multi images)
+***** URL
+~/record/withimage~
+***** Method
+~POST~
+***** URL Params
+required:
+Optional:
+| Param name  | type    |
+|-------------+---------|
+| title       | string  |
+| description | string  |
+| phone       | int(11) |
+| mail        | string  |
+| source      | string  |
+
+***** Data Params
+required:
+Optional:
+| Param name | type           |
+|------------+----------------|
+| picture    | form-data:file |
+
 ***** Success Response
 Code: ~201~ Created
 Content: ~{ "id" : 123 }~
