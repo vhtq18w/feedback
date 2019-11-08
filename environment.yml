@@ -24,13 +24,14 @@ dependencies:
   - mako=1.1.0=py_0
   - markupsafe=1.0=py35h470a237_1
   - ncurses=6.1=hf484d3e_1002
-  - openssl=1.0.2r=h14c3975_0
+  - openssl=1.0.2t=h14c3975_0
   - pip=18.0=py35_1001
   - python=3.5.6=hc3d631a_0
   - python-dateutil=2.8.1=py_0
   - python-editor=1.0.4=py_0
   - pytz=2019.3=py_0
   - readline=7.0=hf8c457e_1001
+  - requests=2.12.5=py35_0
   - setuptools=40.4.3=py35_0
   - six=1.11.0=py35_1
   - sqlalchemy=1.2.12=py35h470a237_0
